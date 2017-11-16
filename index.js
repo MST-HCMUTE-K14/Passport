@@ -6,6 +6,10 @@ const passport = require("passport")
 const passportFb = require('passport-facebook').Strategy
 const LocalStrategy = require("passport-local").Strategy
 
+app.use('/js', express.static('./node_modules/bootstrap/dist/js')); // redirect bootstrap JS
+app.use('/js', express.static('./node_modules/jquery/dist')); // redirect JS jQuery
+app.use('/css', express.static('./node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
+
 var User = require('./user')
 
 app.set('views','./views')
@@ -36,14 +40,14 @@ app.route('/')
 .post(passport.authenticate('local',{failureRedirect: "/",
                                     successRedirect: "/private"}))
 
-
+// Passport local
 passport.use(new LocalStrategy(
     (username,password,done)=> {
         check = new User()
         User.findOne({'name':username},function(err,user){
             if(user && check.validPassword(password,user.password)){
                 return done(null,user)
-                console.log("lsfjlasjfl")
+
             }else{
                 return done(null,false)
             }
@@ -67,7 +71,9 @@ passport.use(new passportFb(
         profileFields: ['id', 'emails', 'displayName', 'photos']
     },
     (accessToken, refreshToken, profile, done) => {
+        
         var json = profile._json
+        console.log(json)
         User.findOne({ id: json.id }, (err, user) => {
             if (err) {
                 return done(err)
