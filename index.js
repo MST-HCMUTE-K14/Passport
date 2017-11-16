@@ -27,7 +27,7 @@ app.get('/index',(req,res)=> {
 })
 
 app.get('/private',(req,res)=>{
-    // chech authentication
+    // Chech authentication
 
 })
 
@@ -38,12 +38,15 @@ app.route('/')
 // Passport local
 
 // Passport facebook
+    // Auth API
+
+    // Callback API
 
 // Passport google
 
-// serializeUser
+// SerializeUser
 
-// deserializeUser
+// DeserializeUser
 
 
 const port = 3000;
