@@ -29,9 +29,9 @@ app.get('/index',(req,res)=> {
 
 app.get('/private',(req,res)=>{
     if(req.isAuthenticated()){
-        res.send("Hello " + req.user.name)
+        res.send("Hello" + req.user.name + "<br> <a href=\"/logout\">login page</a>")
     }else{
-        res.send("Ban phai dang nhap")
+        res.send("Ban phai dang nhap <br> <a href=\"/\">login page</a>")
     }
 })
 
@@ -109,3 +109,8 @@ passport.deserializeUser((id,done)=>{
 
 const port = 3000;
 app.listen(port,() => console.log("server running: http://localhost:3000"))
+
+app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+  });
