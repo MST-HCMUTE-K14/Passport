@@ -108,4 +108,4 @@ passport.deserializeUser((id,done)=>{
 })
 
 const port = 3000;
-app.listen(port,() => console.log("server khoi dong tai port 3000"))
+app.listen(port,() => console.log("server running: http://localhost:3000"))
