@@ -29,7 +29,7 @@ app.get('/index',(req,res)=> {
 
 app.get('/private',(req,res)=>{
     if(req.isAuthenticated()){
-        res.send("Hello" + req.user.name + "<br> <a href=\"/logout\">login page</a>")
+        res.send("Hello " + req.user.name + "<br> <a href=\"/logout\">Logout</a>")
     }else{
         res.send("Ban phai dang nhap <br> <a href=\"/\">login page</a>")
     }
